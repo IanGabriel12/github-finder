@@ -1,0 +1,28 @@
+.loading-indicator{
+   display:flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   width: 100px;
+}
+
+.loading-indicator__image{
+   width: 80px;
+   height: 80px;
+   animation: fly 1.25s alternate infinite ease-in-out;
+}
+
+.loading-indicator p{
+   text-align: center;
+   font-family: 'Ubuntu', sans-serif;
+}
+
+@keyframes fly{
+   from{
+      transform: translateY(0);
+   }
+
+   to{
+      transform: translateY(-10px);
+   }
+}

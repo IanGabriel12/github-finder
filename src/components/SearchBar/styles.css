@@ -1,0 +1,29 @@
+.search-bar{
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   background-color: #303030;
+   border: 5px solid #303030;
+   border-radius: 5px;
+   margin-top: 15px;
+}
+
+.search-bar input{
+   font-size: 16px;
+
+   transition: border 0.3s;
+   -webkit-transition: border 0.3s;
+   -moz-transition: border 0.3s;
+
+   margin-left: 5px;
+   font-family: 'Ubuntu', sans-serif;
+   padding-left: 5px;
+}
+
+.search-bar input:focus{
+   outline: 0;
+}
+
+.search-bar__icon:hover{
+   cursor: pointer;
+}

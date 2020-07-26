@@ -1,0 +1,19 @@
+.content-item{
+   background: #fefefe;
+   border-radius: 5px;
+ 
+   padding: 10px 5px;
+}
+ 
+.content-item p {
+   margin: 0;
+   font-family: 'Ubuntu', sans-serif;
+   color: #303030;
+}
+ 
+.content-item h4{
+   margin: 0;
+   font-family: 'Roboto', sans-serif;
+   color: #303030;
+   font-size: 24px;
+}
