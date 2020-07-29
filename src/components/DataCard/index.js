@@ -4,53 +4,51 @@ import LoadingIndicator from '../LoadingIndicator'
 import './styles.css'
 
 const DataCard = (props) => {
-   /*Receives a title and a list of components, and adds a vertical margin to these components*/
-
+   /*
+   Receives a title and a array of elements
+   Display those elements with a vertical margin between them
+   */
    const [isOpen, setIsOpen] = useState(false);
 
    let cardContent
-
+   let isEmpty = true
    if(!props.elements){
-      cardContent = (
-         <div className={
-            'data-card-content data-card-content--empty ' + (isOpen ? 'data-card-content--open' : '')
-         }>
-            <LoadingIndicator />
-         </div>
-      )
+      cardContent = <LoadingIndicator inverted/>
    }else if(props.elements.length === 0){
-      cardContent = (
-         <div className={
-            'data-card-content data-card-content--empty ' + (isOpen ? 'data-card-content--open' : '')
-         }>
-            <p>Não há nada aqui...</p>
-         </div>
-      )
+      cardContent = <p className='empty__text'>Não há nada aqui</p>
    }else{
+      isEmpty = false
       cardContent = (
-         <div 
-            className={'data-card-content ' + (isOpen ? 'data-card-content--open' : '')}
-         >
          <ul>
             {props.elements.map((element, index) => (
-               <li key={index}>{element}</li>
+               <li key={index}>
+                  {element}
+               </li>
             ))}
          </ul>
-         </div>
       )
    }
 
    return (
-      <div className='data-card'>
-         <div className='data-card-header'>
-            <h3>{props.title}</h3>
+      <div className='card'>
+         <div className={'card-header ' + (isOpen ? 'card-header--open' : '')}>
+            <h4>{props.title}</h4>
             <FiArrowDown 
                onClick={() => setIsOpen(!isOpen)}
-               className={'data-card-header__icon ' + (isOpen ? 'data-card-header__icon--open' : '')}
-               size={24}
+               stroke='#e4e4e4' 
+               size={24} 
+               className={'card-header__icon ' + (isOpen ? 'card-header__icon--open' : '')} 
             />
          </div>
-         {cardContent}
+         <div 
+            className={
+               'card-content ' + 
+               (isOpen ? 'card-content--open ' : '') + 
+               (isEmpty ? 'card-content--empty ' : '')
+            }
+         >
+            {cardContent}
+         </div>
       </div>
    )
 }

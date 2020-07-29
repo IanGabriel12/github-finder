@@ -1,28 +1,56 @@
 .loading-indicator{
-   display:flex;
+   display: flex;
    flex-direction: column;
    justify-content: center;
    align-items: center;
-   width: 100px;
-}
-
-.loading-indicator__image{
-   width: 80px;
-   height: 80px;
-   animation: fly 1.25s alternate infinite ease-in-out;
 }
 
 .loading-indicator p{
-   text-align: center;
    font-family: 'Ubuntu', sans-serif;
 }
 
-@keyframes fly{
-   from{
-      transform: translateY(0);
-   }
+.loading-balls{
+   display: flex;
+   margin-bottom: 10px;
+}
 
+.loading__ball{
+   margin: 0 5px;
+   width: 15px;
+   height: 15px;
+   border-radius: 15px;
+   background-color: transparent;
+   animation: fade 0.75s alternate-reverse infinite ease-in-out;
+}
+
+.loading__ball:nth-child(1){
+   animation-delay: 0;
+}
+.loading__ball:nth-child(2){
+   animation-delay: 0.25s;
+}
+.loading__ball:nth-child(3){
+   animation-delay: 0.5s;
+}
+
+/*inverted colors*/
+
+.loading-indicator--inverted .loading__ball{
+   animation-name: fadeToWhite;
+}
+
+.loading-indicator--inverted p{
+   color: #e4e4e4;
+}
+
+@keyframes fade{
    to{
-      transform: translateY(-10px);
+      background-color: #303030;
+   }
+}
+
+@keyframes fadeToWhite{
+   to{
+      background-color: #e4e4e4;
    }
 }

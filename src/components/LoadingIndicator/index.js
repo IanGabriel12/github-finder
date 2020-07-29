@@ -1,31 +1,20 @@
-import React, {useState, useEffect} from 'react'
+import React from 'react'
 import './styles.css'
 
-const LoadingIndicator = () => {
-   const [loadingText, setLoadingText] = useState('Carregando')
-
-   useEffect(() => {
-      const interval = setInterval(() => {
-         setLoadingText(
-            loadingText => (
-               loadingText === 'Carregando...' ? 'Carregando' : loadingText + '.'
-            )
-         )
-      }, 1000)
-
-      return () => clearInterval(interval)
-   }, [])
-
-
-
+const LoadingIndicator = (props) => {
+   /*
+   Returns a loading indicator that 
+   normally is black but its color 
+   can be inverted to white
+   */
    return (
-      <div className='loading-indicator'>
-         <img 
-            src='https://i.pinimg.com/originals/d6/40/57/d6405738890860b9844024299ee0c7a6.png'
-            alt='octocat'
-            className='loading-indicator__image'
-         />
-         <p>{loadingText}</p>
+      <div className={'loading-indicator ' + (props.inverted ? 'loading-indicator--inverted' : '')}>
+         <div className='loading-balls'>
+            <div className='loading__ball'></div>
+            <div className='loading__ball'></div>
+            <div className='loading__ball'></div>
+         </div>
+         <p>Carregando...</p>
       </div>
    )
 }

@@ -1,41 +1,122 @@
 header{
-  margin-top: 15px;
+  background-color: #303030;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0;
+}
+
+.header-logo{
   display: flex;
   align-items: center;
 }
 
-header img{
+.header-logo img{
   height: 50px;
   margin-right: 10px;
 }
 
-header h1{
-  font-family: 'Ubuntu', sans-serif;
+.header-logo h1{
+  color: #e4e4e4;
+  font-family: 'Lato', serif;
+  font-style: italic;
+  font-weight: 300;
 }
 
-#separator{
-  width: 100%;
-  border: 1px solid #303030;
-  margin: 20px 0;
-}
 
-.data{
-  width: 95%;
+/*Description text*/
+.description-box{
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  padding: 60px 10px;
+  width: 100%;
+  background-color: white;
 }
 
-.profile-container{
-  margin-top: 40px;
-  margin-bottom: 30px;
+.description-text{
+  width: 400px;
 }
 
+.description-text{
+  margin-right: 20px;
+}
 
-@media only screen and (max-width: 1400px){
-  .data{
+.description-text h2{
+  font-size: 40px;
+  font-family: 'Lato', sans-serif;
+}
+
+.description-text p{
+  font-size: 20px;
+  font-family: 'Ubuntu', sans-serif;
+  text-align: justify;
+  font-weight: 300;
+  margin-top: 15px;
+}
+
+main{
+  flex-grow: 1;
+  background-color: #e4e4e4;
+  display: flex;
+  justify-content: space-around;
+  padding: 100px 0;
+}
+
+.extra-information{
+  width: 40%;
+  min-width: 320px;
+}
+
+@media only screen and (max-width: 768px){
+  main{
     flex-direction: column;
+    justify-content: center;
     align-items: center;
   }
+
+  .extra-information{
+    margin-top: 50px;
+    width: 90%;
+  }
+
+  .description-box{
+    flex-direction: column;
+  }
+
+  .description-text{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+    margin-right: 0;
+  }
+
+  .description-text h2, .description-text p{
+    text-align: center;
+  }
+
+  .description-text p{
+    width: 80%;
+  }
+}
+
+@media only screen and (max-width: 480px){
+  .extra-information{
+    width: 90vw;
+    min-width: unset;
+  }
+
+  .description-text{
+    width: auto;
+  }
+
+  .description-text h2{
+    font-size: 9vw;
+  }
+
+  .description-text p{
+    font-size: 4.2vw;
+  }
+
 }

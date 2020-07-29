@@ -2,129 +2,152 @@ import React, {useState} from 'react';
 
 import DataCard from './components/DataCard';
 import RepoInfo from './components/RepoInfo';
-import SearchBar from './components/SearchBar';
+import ProfileInfo from './components/ProfileInfo';
+import SearchBox from './components/SearchBox';
 import LoadingIndicator from './components/LoadingIndicator';
-import ProfileInfo from './components/UserProfileInfo';
-import ProfileListItem from './components/ProfileListItem';
+import CurrentProfileInfo from './components/CurrentProfileInfo';
+import FeedbackMessage from './components/FeedbackMessage';
 
 import githubAPI from './services/github';
 import './App.css';
 import GitHubIcon from './assets/githubicon.svg';
 
+
 function App() {
   const [userInputValue, setUserInputValue] = useState('')
   const [isLoading, setIsLoading] = useState(false)
-  const [errorMessage, setErrorMessage] = useState('')
-  const [userInfo, setUserInfo] = useState(null) /* Type: Object */
+  const [errorMessage, setErrorMessage] = useState(null)
+  const [currentProfile, setCurrentProfile] = useState(null) /* Type: Object */
   const [userRepos, setUserRepos] = useState(null) /* Type: Object */
   const [userFollowers, setUserFollowers] = useState(null) /* Type: Object */
   const [userFollowing, setUserFollowing] = useState(null) /* Type: Object */
 
+
+  function clearData(){
+    setUserRepos(null);
+    setUserFollowers(null);
+    setUserFollowing(null);
+    setCurrentProfile(null);
+  }
+
   async function getUserData(username){
     try{
-      setErrorMessage('')
+      clearData() //To prevent that old content from another user stay while the new content is not loaded
+      setErrorMessage(null)
       setIsLoading(true)
 
-      const info = (await githubAPI.get(`users/${username}`)).data
-      setUserInfo(info)
+      githubAPI.get(`users/${username}`)
+        .then(response => {
+          setCurrentProfile(response.data)
+          setIsLoading(false)
+        })
 
-      const repositories = (await githubAPI.get(`users/${username}/repos`)).data
-      setUserRepos(repositories)
+      githubAPI.get(`users/${username}/repos`)
+        .then(response => setUserRepos(response.data))
 
-      const followers = (await githubAPI.get(`users/${username}/followers`)).data
-      setUserFollowers(followers)
-
-      const following = (await githubAPI.get(`users/${username}/following`)).data
-      setUserFollowing(following)
+      githubAPI.get(`users/${username}/followers`)
+        .then(response => setUserFollowers(response.data))
+      
+      githubAPI.get(`users/${username}/following`)
+        .then(response => setUserFollowing(response.data))
+      
     } catch {
       setErrorMessage('Usuário não encontrado')
     }
-
-    setIsLoading(false)
   }
 
-  function handleNameClick(username){
+  function handleEyeClick(username){
     getUserData(username)
     setUserInputValue(username)
   }
 
-  let repositoriesElements
-  let followersElements
-  let followingElements
-  //Creating list items for each card with their respective data
-  if(userRepos){
-    repositoriesElements = userRepos.map((repository, index) => (
-      <RepoInfo 
-        repository={repository}
-        key={index}
-      />
-    ))
-  }
 
-  if(userFollowers){
-    followersElements = userFollowers.map((follower, index) => {
-      follower.name = follower.login
-      return <ProfileListItem 
-        profile={follower} 
-        key={index}
-        onNameClick={() => handleNameClick(follower.name)}
-      />
-    })
-  }
+  let mainContent;
 
-  if(userFollowing){
-    followingElements = userFollowing.map((following, index) => {
-      following.name = following.login
-      return <ProfileListItem 
-        profile={following} 
-        key={index}
-        onNameClick={() => handleNameClick(following.name)}
-      />
-    })
-  }
+  if(isLoading){
 
-  /** The element that will show on screen depending on the request result */
-  let mainElement
-  if(errorMessage){
-    mainElement = <h1>{errorMessage}</h1>
-  } else if (isLoading){
-    mainElement = <LoadingIndicator />
-  } else if(userInfo){
-    mainElement = (
+    mainContent = <LoadingIndicator />
+
+  }else if(errorMessage){
+
+    mainContent = (<FeedbackMessage 
+      title='Usuário não encontrado'
+      description='Parece que esse usuário não existe. Verifique qualquer erro na digitação (a pesquisa não diferencia caracteres maiúsculos de minúsculos)'
+    />)
+
+  }else if(!currentProfile){
+
+    mainContent = (<FeedbackMessage 
+      title='Nada por enquanto'
+      description='Digite um nome de usuário na caixa de pesquisa para que as informações dele sejam exibidas aqui.'
+    />)
+
+  }else{
+
+    let repositoriesElements
+    if (userRepos){
+      repositoriesElements = userRepos.map((repo, index) => (
+        <RepoInfo repository={repo} key={index}/>
+      ))
+    }
+
+    let followersElements
+    if (userFollowers){
+      followersElements = userFollowers.map((userProfile, index) => (
+        <ProfileInfo profile={userProfile} key={index} onEyeClick={() => handleEyeClick(userProfile.login)}/>
+      ))
+    }
+    
+    let followingElements
+    if (userFollowing){
+      followingElements = userFollowing.map((userProfile, index) => (
+        <ProfileInfo profile={userProfile} key={index} onEyeClick={() => handleEyeClick(userProfile.login)}/>
+      ))
+    }
+
+    mainContent = (
       <>
-        <div className='profile-container'>
-          <ProfileInfo 
-            profile={userInfo}
-            important
-          />
-        </div>
-        
-        <div className='data'>
-          <DataCard title='Repositórios' elements={repositoriesElements}></DataCard>
-          <DataCard title='Seguindo' elements={followingElements}></DataCard>
-          <DataCard title='Seguidores' elements={followersElements}></DataCard>
+        <CurrentProfileInfo profile={currentProfile}/>
+        <div className='extra-information'>
+          <DataCard title='Repositórios' elements={repositoriesElements}/>
+          <DataCard title='Seguidores' elements={followersElements}/>
+          <DataCard title='Seguindo' elements={followingElements}/>
         </div>
       </>
     )
-  }
-  
 
+  }
+
+
+  
+  
   return (
     <>
       <header>
-        <img src={GitHubIcon} alt='GitHub icon'/>
-        <h1>Finder</h1>
+        <div className='header-logo'>
+          <img src={GitHubIcon} alt='GitHubIcon'/>
+          <h1>Finder</h1>
+        </div>
       </header>
-      <SearchBar 
-        value={userInputValue}
-        onChange={e => setUserInputValue(e.target.value)}
-        onEnter={() => getUserData(userInputValue)}
-        onClick={() => getUserData(userInputValue)}
-      />
-      <hr id='separator'/>
-      {mainElement}
+      <article className='description-box'>
+        <div className='description-text'>
+          <h2>Aqui você encontra <br/> o que precisa</h2>
+          <p>
+            Digite um nome de usuário na caixa ao lado e encontre
+            as principais informações sobre ele.
+          </p>
+        </div>
+        <SearchBox 
+          value={userInputValue}
+          handleInput={event => setUserInputValue(event.target.value)}
+          handleSubmit={() => getUserData(userInputValue)}
+        />
+      </article>
+      <main>
+        {mainContent}
+      </main>
     </>
-  );
+  )
 }
 
 export default App;
