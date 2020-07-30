@@ -60,6 +60,14 @@ function App() {
     setUserInputValue(username)
   }
 
+  function handleSubmit(){
+    if(currentProfile){
+      if(currentProfile.login === userInputValue) return
+    }
+    
+    getUserData(userInputValue)
+  }
+
 
   let mainContent;
 
@@ -139,7 +147,7 @@ function App() {
         <SearchBox 
           value={userInputValue}
           handleInput={event => setUserInputValue(event.target.value)}
-          handleSubmit={() => getUserData(userInputValue)}
+          handleSubmit={handleSubmit}
         />
       </article>
       <main>

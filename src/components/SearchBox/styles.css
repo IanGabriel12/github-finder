@@ -20,6 +20,11 @@
 
 .action-container button:hover{
    cursor: pointer;
+   opacity: 0.8;
+}
+
+.action-container button:active{
+   transform: scale(1.05);
 }
  
 .action-container__search-box{
@@ -38,12 +43,23 @@
    font-weight: 300;
    font-style: italic;
    flex-grow: 1;
+   background-color: #eeeeee;
+   transition: background-color 0.1s;
+}
+
+.action-container__search-box input:focus{
+   background-color: white;
 }
  
 .action-container__search-box__icon{
    width: 30px;
    height: 30px;
    margin-right: 10px;
+}
+
+.action-container__search-box__icon:hover{
+   transform: scale(1.05);
+   cursor: pointer;
 }
 
 @media only screen and (max-width: 768px){

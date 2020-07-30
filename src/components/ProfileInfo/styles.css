@@ -37,7 +37,7 @@
    margin: 0 13px;
 }
 
-.profile__visualize-action:hover{
+.profile__visualize-action:hover, .profile__visualize-action:focus{
    cursor: pointer;
    transform: scale(1.1);
 }

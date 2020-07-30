@@ -43,6 +43,14 @@
    text-align: center;
 }
 
+.current-profile-description a:hover, .current-profile-description:focus{
+   opacity: 0.8;
+}
+
+.current-profile-description a:active{
+   transform: scale(1.05);
+}
+
 @media only screen and (max-width: 768px){
    .current-profile{
       display: flex;
