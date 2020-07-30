@@ -31,29 +31,28 @@ function App() {
   }
 
   async function getUserData(username){
-    try{
-      clearData() //To prevent that old content from another user stay while the new content is not loaded
-      setErrorMessage(null)
-      setIsLoading(true)
+    clearData() //To prevent that old content from another user stay while the new content is not loaded
+    setErrorMessage(null)
+    setIsLoading(true)
 
-      githubAPI.get(`users/${username}`)
-        .then(response => {
-          setCurrentProfile(response.data)
-          setIsLoading(false)
-        })
+    githubAPI.get(`users/${username}`)
+      .then(response => {
+        setCurrentProfile(response.data)
+        setIsLoading(false)
 
-      githubAPI.get(`users/${username}/repos`)
-        .then(response => setUserRepos(response.data))
+        githubAPI.get(`users/${username}/repos`)
+          .then(response => setUserRepos(response.data))
 
-      githubAPI.get(`users/${username}/followers`)
-        .then(response => setUserFollowers(response.data))
-      
-      githubAPI.get(`users/${username}/following`)
-        .then(response => setUserFollowing(response.data))
-      
-    } catch {
-      setErrorMessage('Usuário não encontrado')
-    }
+        githubAPI.get(`users/${username}/followers`)
+          .then(response => setUserFollowers(response.data))
+    
+        githubAPI.get(`users/${username}/following`)
+          .then(response => setUserFollowing(response.data))
+      })
+      .catch(() => {
+        setErrorMessage('Usuário não encontrado')
+        setIsLoading(false)
+      })
   }
 
   function handleEyeClick(username){

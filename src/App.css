@@ -12,6 +12,7 @@ header{
 }
 
 .header-logo img{
+  width: 50px;
   height: 50px;
   margin-right: 10px;
 }
@@ -119,4 +120,28 @@ main{
     font-size: 4.2vw;
   }
 
+}
+
+/*Large screens*/
+@media only screen and (min-width: 1824px){
+  .header-logo img{
+    width: 75px;
+    height: 75px;
+  }
+
+  .header-logo h1{
+    font-size: 40px;
+  }
+
+  .description-text{
+    width: 450px;
+  }
+
+  .description-text h2{
+    font-size: 48px;
+  }
+
+  .description-text p{
+    font-size: 24px;
+  }
 }

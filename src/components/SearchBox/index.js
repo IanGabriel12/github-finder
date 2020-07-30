@@ -10,7 +10,7 @@ const SearchBar = (props) => {
    return (
       <div className='action-container'>
          <div className='action-container__search-box'>
-            <FiSearch stroke='#e4e4e4' size={30} className='action-container__search-box__icon'/>
+            <FiSearch stroke='#e4e4e4' className='action-container__search-box__icon'/>
             <input 
                placeholder='Digite um nome de usuário'
                onChange={props.handleInput}

@@ -42,3 +42,18 @@
       width: 25px;
    }
 }
+
+@media only screen and (min-width: 1824px){
+   .repo-information h5{
+      font-size: 32px;
+   }
+
+   .repo-information p{
+      font-size: 24px;
+   }
+
+   .repo-container svg{
+      width: 40px;
+      height: 40px;
+   }
+}

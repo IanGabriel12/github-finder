@@ -76,3 +76,28 @@
       width: 90vw;
    }
 }
+
+@media only screen and (min-width: 1824px){
+   .current-profile-header img{
+      width: 90px;
+      height: 90px;
+      border-width: 3px;
+   }
+
+   .current-profile-header h3{
+      font-size: 40px;
+      max-width: 450px;
+   }
+
+   .current-profile-description{
+      width: 400px;
+   }
+
+   .current-profile-description p{
+      font-size: 24px;
+   }
+
+   .current-profile-description a{
+      font-size: 24px;
+   }
+}

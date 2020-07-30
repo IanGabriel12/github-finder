@@ -57,3 +57,19 @@
       font-size: 4vw;
    }
 }
+
+@media only screen and (min-width: 1824px){
+   .message-container img{
+      max-width: none;
+      width: 40%;
+   }
+
+   .message-content h3{
+      font-size: 56px;
+      white-space: nowrap;
+   }
+
+   .message-content__text p {
+      font-size: 24px;
+   }
+}
