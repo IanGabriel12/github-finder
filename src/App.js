@@ -62,7 +62,7 @@ function App() {
 
   function handleSubmit(){
     if(currentProfile){
-      if(currentProfile.login === userInputValue) return
+      if(currentProfile.login.toLowerCase() === userInputValue.trim().toLowerCase()) return
     }
     
     getUserData(userInputValue)
