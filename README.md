@@ -6,4 +6,4 @@ Esse site usa a API do GitHub para mostrar as principais informações de um usu
 ![Design responsivo](https://s6.gifyu.com/images/ezgif.com-optimize9bbcf73be9dbc109.gif)
 ![Usando o site](https://i.ibb.co/Phj0hHS/ezgif-com-video-to-gif.gif)
 # Acesse
-[Clique aqui para acessar](https://gitfinder.netlify.app)
+[Clique aqui para acessar](https://gitinfo.netlify.app)
