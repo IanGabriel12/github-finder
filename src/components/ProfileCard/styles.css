@@ -1,0 +1,21 @@
+.profile-card a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid #9e9898;
+}
+
+.profile-card:last-child a {
+    border-bottom: none;
+}
+
+.profile-card a:hover {
+    background-color: #3d3a3a;
+}
+
+.profile-card-body {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}

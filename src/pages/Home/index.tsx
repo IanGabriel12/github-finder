@@ -3,6 +3,9 @@ import './styles.css'
 import { useDebounce } from '../../hooks/useDebounce';
 import { GithubAPI } from '../../services/GithubAPI';
 import React from '../../assets/react.svg';
+import RepoCard from '../../components/RepoCard';
+import RepoList from '../../components/RepoList';
+import ProfileCardList from '../../components/ProfileCardList';
 
 function App() {
   const [username, setUsername] = useState('');
@@ -35,11 +38,29 @@ function App() {
             <h2>Nome de usuário</h2>
           </div>
           <div className='profile-bottom'>
-            <p></p>
+            <p>Apaixonado por aprender</p>
+            <a href="http://github.com/iangabriel12">Ver no GitHub</a>
           </div>
         </div>
-        <div></div>
-        <div></div>
+        <div className='repositories'>
+          <h2>Repositórios</h2>
+          <RepoList />
+        </div>
+        <div className='starred'>
+          <h2>Com estrela</h2>
+          <RepoList />
+        </div>
+        <div className='following'>
+          <h2>Seguindo</h2>
+
+          <ProfileCardList />
+        </div>
+        <div className='followers'>
+          <h2 >Seguidores</h2>
+
+          <ProfileCardList />
+
+        </div>
       </div>
     </main>
   )
