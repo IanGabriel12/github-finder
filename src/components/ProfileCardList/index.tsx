@@ -2,8 +2,11 @@ import { useEffect, useState } from "react";
 import ProfileCard from "../ProfileCard";
 import { ProfileDto } from "../../dto/ProfileDto";
 import { GithubAPI } from "../../services/GithubAPI";
+import Spinner from "../Spinner";
+import ErrorIcon from '../../assets/xmark.svg';
+import './styles.css'
 
-export default function ProfileCardList(props: { profilesUrl: string }) {
+export default function ProfileCardList(props: { profilesUrl: string, onCardClick: (username: string) => any }) {
 
     const [profiles, setProfiles] = useState<ProfileDto[]>([]);
     const [isLoading, setIsLoading] = useState(false);
@@ -29,11 +32,26 @@ export default function ProfileCardList(props: { profilesUrl: string }) {
     let componentToRender: React.JSX.Element;
 
     if(isLoading) {
-        componentToRender = <li>Carregando...</li>
+        componentToRender = (
+            <div className='profile-list-wrapper'>
+                <Spinner width={30} height={30} borderWidth={3}/>
+                <p>Carregando usuários...</p>
+            </div>
+        )
     } else if (!isLoading && hasError) {
-        componentToRender = <li>Erro ao carregar os usuários</li>
+        componentToRender = (
+            <div className='profile-list-wrapper profile-list-error'>
+                <img src={ErrorIcon} alt="Erro" />
+                <p>Erro ao carregar usuários</p>
+            </div>
+        )
     } else {
-        componentToRender = <>{profiles.map(profile => <ProfileCard key={profile.login} profile={profile}/>)}</>
+        componentToRender = <>{profiles.map(profile => <ProfileCard 
+                key={profile.login} 
+                profile={profile}
+                onClick={() => props.onCardClick(profile.login)}
+                />
+        )}</>
     }
 
     return (

@@ -1,16 +1,23 @@
-.profile-card a {
+.profile-card button {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 1rem 1.5rem;
     border-bottom: 1px solid #9e9898;
+    background: transparent;
+    border: none;
+    width: 100%;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    color: #ebe0e0;
+    cursor: pointer;
 }
 
-.profile-card:last-child a {
+.profile-card:last-child button {
     border-bottom: none;
 }
 
-.profile-card a:hover {
+.profile-card button:hover {
     background-color: #3d3a3a;
 }
 
@@ -24,4 +31,9 @@
     width: 50px;
     height: 50px;
     border-radius: 50%;
+}
+
+.info-icon {
+    width: 30px;
+    height: 30px;
 }
