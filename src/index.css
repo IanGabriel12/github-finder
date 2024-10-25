@@ -8,6 +8,11 @@
 a {
   text-decoration: none;
 }
+
+a:link {
+  color: unset;
+}
+
 a:visited {
   color: unset;
 }

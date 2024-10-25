@@ -31,16 +31,9 @@ header {
     text-align: center;
     margin: 0.5rem 0 1.5rem 0;
   }
-  
-  & input {
-    width: 500px;
-    height: 40px;
-    border-radius: 10px;
-    border: 1px solid #c7bebe;
-    background-color: #ebe0e0;
-    padding: 0.25rem 0.75rem;
-    font-size: 1rem;
-  }
+
+  & 
+  & 
   
   & span {
     margin-top: 0.5rem;
@@ -48,6 +41,36 @@ header {
     color: #ebe0e0;
     opacity: 0.7;
   }
+}
+
+.input-wrapper {
+  width: 500px;
+  height: 40px;
+  display: flex;
+  gap: 1rem;
+}
+
+.input-wrapper button {
+  width: 150px;
+  font-family: 'Poppins', sans-serif;
+  background-color: #2fb32f;
+  color: #ebe0e0;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.input-wrapper button:hover {
+  background-color: #289b28;
+}
+
+.input-wrapper input {
+  flex: 1;
+  border-radius: 10px;
+  border: 1px solid #c7bebe;
+  background-color: #ebe0e0;
+  padding: 0.25rem 0.75rem;
+  font-size: 1rem;
 }
 
 .body {
