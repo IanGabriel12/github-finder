@@ -1,4 +1,4 @@
-import axios, { AxiosInstance, AxiosResponse } from 'axios';
+import axios from 'axios';
 import { UserDto } from '../dto/UserDto';
 import { RepoDto } from '../dto/RepoDto';
 import { ProfileDto } from '../dto/ProfileDto';
@@ -10,8 +10,6 @@ export class GithubAPI {
         baseURL: 'https://api.github.com'
     });;
 
-    private GithubAPI() {
-    }
 
     public static getInstance(): GithubAPI {
         if(!this.instance) {
