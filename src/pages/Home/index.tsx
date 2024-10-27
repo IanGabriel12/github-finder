@@ -25,6 +25,8 @@ function App() {
   const [hasError, setError] = useState(false);
 
   const bodyRef = useRef<HTMLDivElement | null>(null);
+  const repositoryListRef = useRef<HTMLDivElement | null>(null);
+  const starredListRef = useRef<HTMLDivElement | null>(null);
 
 
   function handleButtonClick(currentUsername: string) {
@@ -85,6 +87,24 @@ function App() {
     setUsername(username);
     handleButtonClick(username);
   }
+  
+  function goToRepositories() {
+    if(repositoryListRef.current) {
+      repositoryListRef.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      })
+    }
+  }
+
+  function goToStarred() {
+    if(starredListRef.current) {
+      starredListRef.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      })
+    }
+  }
 
   let renderOnBody: React.JSX.Element;
 
@@ -117,13 +137,21 @@ function App() {
             <a href={htmlUrl}>Ver no GitHub</a>
           </div>
         </div>
-        <div className='repositories'>
-          <h2>Repositórios</h2>
-          <RepoList reposUrl={reposUrl}/>
-        </div>
-        <div className='starred'>
-          <h2>Com estrela</h2>
-          <RepoList reposUrl={starredUrl}/>
+        <div className="repository-list-wrapper">
+          <div className='repositories' ref={repositoryListRef}>
+            <div className='repo-list-header'>
+              <h2>Repositórios</h2>
+              <button onClick={goToStarred} className='action-button'>Com estrela</button>
+            </div>
+            <RepoList reposUrl={reposUrl}/>
+          </div>
+          <div className='starred' ref={starredListRef}>
+            <div className='repo-list-header'>
+              <h2>Com estrela</h2>
+              <button onClick={goToRepositories} className='action-button'>Repositórios</button>
+            </div>
+            <RepoList reposUrl={starredUrl}/>
+          </div>
         </div>
         <div className='following'>
           <h2>Seguindo</h2>

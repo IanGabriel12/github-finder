@@ -92,6 +92,10 @@ header {
   gap: 2rem;
 }
 
+.repository-list-wrapper {
+  display: contents;
+}
+
 .user-profile, .repositories, .starred, .followers, .following {
   background-color: #4e4a4a;
   border: 1px solid #9e9898;
@@ -190,14 +194,24 @@ header {
   grid-row-start: span 3;
 }
 
-.following, .followers, .repositories, .starred {
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
+
+.following, .followers {
   & h2 {
     border-bottom: 1px solid #9e9898;
     padding: 0.5rem 1rem;
   }
+}
+
+.repositories, .starred {
+  & .repo-list-header {
+    border-bottom: 1px solid #9e9898;
+    padding: 0.5rem 1rem;
+  }
+}
+.following, .followers, .repositories, .starred {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 .following, .followers {
@@ -231,4 +245,109 @@ header {
 .profile-list {
   flex: 1;
   overflow: auto;
+}
+
+.repo-list-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.action-button {
+  display: none;
+}
+
+@media screen and (max-width: 1200px){
+
+  .repository-list-wrapper {
+    display: unset;
+    grid-column: span 3;
+    display: grid;
+    grid-template-columns: 100% 100%;
+    overflow-x: auto;
+    gap: 1rem;
+  }
+
+  .content {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 300px 1fr;
+  }
+
+  .following {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+  }
+
+  .followers {
+    grid-column: 3 / 4;
+    grid-row: 1 / 2;
+  }
+
+  .repositories {
+    height: 100%;
+  }
+
+  .profile-top img {
+    height: 50px;
+    width: 50px;
+  }
+
+  .profile-top h2 {
+    font-size: 1.25rem;
+  }
+
+  .profile-bottom p {
+    font-size: 1rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .action-button {
+    display: unset;
+    font-family: 'Poppins', sans-serif;
+    background-color: #2fb32f;
+    border-radius: 0.5rem;
+    border: none;
+    padding: 0.5rem 1rem;
+    box-shadow: 1px 1px 10px #141a1454;
+    cursor: pointer;
+    color:#ebe0e0;
+  }
+
+  .action-button:hover {
+    background-color: #289b28;
+  }
+}
+
+@media screen and (max-width: 850px) {
+
+  .content {
+    grid-template-rows: 300px 600px 200px 200px;
+    grid-template-columns: 1fr;
+    overflow: auto;
+  }
+
+  .user-profile {
+    grid-row: 1 / 2;
+    grid-column: 1 / 2;
+  }
+
+  .repository-list-wrapper {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+  }
+
+  .following {
+    width: 100%;
+    grid-row: 3 / 4;
+    grid-column: 1 / 2;
+  }
+
+  .followers {
+    grid-column: 1 / 2;
+    grid-row: 4 / 5;
+  }
 }

@@ -24,3 +24,7 @@ body {
   color: #ebe0e0;
   font-family: 'Poppins', sans-serif;
 }
+
+button {
+  transition: background-color 0.1s;
+}

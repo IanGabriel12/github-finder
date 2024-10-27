@@ -11,6 +11,7 @@
     font-family: 'Poppins', sans-serif;
     color: #ebe0e0;
     cursor: pointer;
+    gap: 0.5rem;
 }
 
 .profile-card:last-child button {
@@ -25,12 +26,22 @@
     display: flex;
     align-items: center;
     gap: 1rem;
+    flex: 1;
+    overflow: hidden;
 }
 
 .profile-card-body img {
     width: 50px;
     height: 50px;
     border-radius: 50%;
+}
+
+.profile-card-body p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-clamp: 1;
+    width: 100%;
+    text-align: left;
 }
 
 .info-icon {
