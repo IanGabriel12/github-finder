@@ -22,6 +22,7 @@ header {
   & h1 {
     font-size: 3rem;
     margin: 0;
+    text-align: center;
   }
   
   & p {
@@ -324,10 +325,13 @@ header {
 
 @media screen and (max-width: 850px) {
 
+  .body {
+    height: unset;
+    min-height: 100vh;
+  }
   .content {
     grid-template-rows: 300px 600px 200px 200px;
     grid-template-columns: 1fr;
-    overflow: auto;
   }
 
   .user-profile {
@@ -350,4 +354,47 @@ header {
     grid-column: 1 / 2;
     grid-row: 4 / 5;
   }
+}
+
+@media screen and (max-width: 550px) {
+  .input-wrapper {
+    display: unset;
+    height: unset;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+  }
+
+  .input-wrapper input {
+    height: 40px;
+    display: block;
+    width: 100%;
+  }
+
+  .input-wrapper button {
+    height: 40px;
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  .hero {
+    width: 100vw;
+    padding: 4rem 2rem;
+  }
+
+  .hero p {
+    width: 100%;
+  }
+
+  .repo-card-body p {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 450px){
+  .repositories h2, .starred h2 {
+    font-size: 1.1rem;
+  }
+
+
 }

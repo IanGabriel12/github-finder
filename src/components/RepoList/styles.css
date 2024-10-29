@@ -25,3 +25,12 @@
   width: 80px;
   height: 80px;
 }
+
+
+
+@media screen and (max-width: 450px){
+  .repo-list {
+    padding: 0.5rem 1rem;
+    gap: 0.5rem;
+  }
+}
